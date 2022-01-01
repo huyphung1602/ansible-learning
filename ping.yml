@@ -4,9 +4,10 @@
 
   vars_prompt:
     - name: username
-      prompt: "Enter ssh user name"
+      prompt: 'Enter ssh user name'
+      private: no
     - name: password
-      prompt: "Enter ssh user password"
+      prompt: 'Enter ssh user password'
 
   vars:
     ansible_user: "{{ username }}"
