@@ -1,0 +1,34 @@
+---
+- hosts: all
+
+  vars_prompt:
+    - name: username
+      prompt: 'Enter ssh user name'
+      private: no
+    - name: password
+      prompt: 'Enter ssh user password'
+
+  vars:
+    ansible_user: "{{ username }}"
+    ansible_password: "{{ password }}" 
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+  tasks:
+  - name: install nginx
+    package:
+      name:
+      - nginx
+      state: latest
+    become: yes
+
+  - name: copy index.html file to the remote linux host
+    copy:
+      src: './index.html'
+      dest: '/usr/share/nginx/html/index.html'
+    become: yes
+
+  - name: start nginx service
+    service:
+      name: nginx
+      state: started
+    become: yes

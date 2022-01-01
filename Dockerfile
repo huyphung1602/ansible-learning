@@ -5,6 +5,7 @@ RUN apt-get update; \
     apt install -y openssh-client; \
     apt install -y python3-pip; \
     apt install -y vim; \
+    apt install -y curl; \
     apt install -y sshpass
 
 RUN pip3 install --upgrade pip; \
